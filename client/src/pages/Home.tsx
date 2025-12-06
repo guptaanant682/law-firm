@@ -1,11 +1,13 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import PracticeAreas from "@/components/sections/PracticeAreas";
 import Experience from "@/components/sections/Experience";
-import Skills from "@/components/sections/Skills";
-import Projects from "@/components/sections/Projects";
+import NotableWork from "@/components/sections/NotableWork";
+import Publications from "@/components/sections/Publications";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import FloatingContact from "@/components/layout/FloatingContact";
 
 export default function Home() {
   return (
@@ -14,12 +16,14 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <PracticeAreas />
         <Experience />
-        <Skills />
-        <Projects />
+        <NotableWork />
+        <Publications />
         <Contact />
       </main>
       <Footer />
+      <FloatingContact />
     </div>
   );
 }

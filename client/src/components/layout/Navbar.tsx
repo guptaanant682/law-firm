@@ -19,9 +19,9 @@ export default function Navbar() {
   const navLinks = [
     { name: "Chambers", href: "#hero" },
     { name: "About", href: "#about" },
+    { name: "Practice Areas", href: "#expertise" },
     { name: "Experience", href: "#experience" },
-    { name: "Expertise", href: "#skills" },
-    { name: "Cases", href: "#projects" },
+    { name: "Publications", href: "#publications" },
     { name: "Counsel", href: "#contact" },
   ];
 
@@ -46,7 +46,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -64,7 +64,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-primary"
+          className="lg:hidden p-2 text-primary"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X /> : <Menu />}
@@ -78,7 +78,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="container px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
