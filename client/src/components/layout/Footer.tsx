@@ -23,7 +23,7 @@ export default function Footer() {
         
         <div className="flex justify-center gap-8 text-sm font-medium text-white/80">
           <a href="#" className="hover:text-secondary transition-colors">Disclaimer</a>
-          <a href="#" className="hover:text-secondary transition-colors">Privacy Policy</a>
+          <a href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-secondary transition-colors">Terms of Use</a>
         </div>
       </div>
