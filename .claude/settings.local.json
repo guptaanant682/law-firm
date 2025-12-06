@@ -11,7 +11,10 @@
       "Bash(DATABASE_URL=\"postgresql://user:password@localhost:5432/legal_portfolio\" PORT=5000 NODE_ENV=development npm run dev:*)",
       "Bash(netstat:*)",
       "Bash(ss:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(npm run build:*)",
+      "Bash(tree:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,13 @@
+node_modules
+.git
+.env
+.env.local
+.DS_Store
+*.log
+.replit
+.local
+server
+script
+migrations
+db
+dist/index.cjs
