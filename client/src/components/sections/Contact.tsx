@@ -6,8 +6,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -28,13 +29,41 @@ export default function Contact() {
     },
   });
 
+  const mutation = useMutation({
+    mutationFn: async (values: z.infer<typeof formSchema>) => {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to submit inquiry");
+      }
+
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Inquiry Received",
+        description: "Thank you for your message. I will review your correspondence shortly.",
+      });
+      form.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Submission Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Inquiry Received",
-      description: "Thank you for your message. I will review your correspondence shortly.",
-    });
-    form.reset();
+    mutation.mutate(values);
   }
 
   return (
@@ -81,9 +110,9 @@ export default function Contact() {
                 <div>
                   <h4 className="font-heading font-bold text-foreground">Social</h4>
                   <div className="flex gap-4 mt-1">
-                     <a href="https://linkedin.com/in/parul-kumar" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
+                     <a href="https://linkedin.com/in/parul-kumar" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
                      <span className="text-muted-foreground/30">|</span>
-                     <a href="https://github.com/Parulkumar51" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">GitHub</a>
+                     <a href="https://github.com/Parulkumar51" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">GitHub</a>
                   </div>
                 </div>
               </div>
@@ -106,7 +135,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel>Full Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Adv. John Doe" {...field} className="bg-muted/50" />
+                        <Input placeholder="Adv. John Doe" {...field} className="bg-muted/50" data-testid="input-name" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -119,7 +148,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel>Email Address</FormLabel>
                       <FormControl>
-                        <Input placeholder="john@example.com" {...field} className="bg-muted/50" />
+                        <Input placeholder="john@example.com" {...field} className="bg-muted/50" data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -132,7 +161,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel>Subject</FormLabel>
                       <FormControl>
-                        <Input placeholder="Legal Consultation / Collaboration" {...field} className="bg-muted/50" />
+                        <Input placeholder="Legal Consultation / Collaboration" {...field} className="bg-muted/50" data-testid="input-subject" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -148,15 +177,21 @@ export default function Contact() {
                         <Textarea 
                           placeholder="Please detail your inquiry..." 
                           className="min-h-[150px] bg-muted/50 resize-none" 
-                          {...field} 
+                          {...field}
+                          data-testid="input-message"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full h-12 text-lg font-heading">
-                  Submit Inquiry
+                <Button 
+                  type="submit" 
+                  className="w-full h-12 text-lg font-heading"
+                  disabled={mutation.isPending}
+                  data-testid="button-submit"
+                >
+                  {mutation.isPending ? "Submitting..." : "Submit Inquiry"}
                 </Button>
               </form>
             </Form>
