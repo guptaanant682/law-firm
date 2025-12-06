@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(echo:*)",
+      "Bash(psql:*)",
+      "Bash(pg_isready:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(DATABASE_URL=\"postgresql://user:password@localhost:5432/legal_portfolio\" PORT=5000 NODE_ENV=development npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(ss:*)",
+      "Bash(lsof:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
