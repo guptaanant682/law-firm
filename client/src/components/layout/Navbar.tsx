@@ -21,7 +21,6 @@ export default function Navbar() {
     { name: "About", href: "#about" },
     { name: "Practice Areas", href: "#expertise" },
     { name: "Experience", href: "#experience" },
-    { name: "Publications", href: "#publications" },
     { name: "Counsel", href: "#contact" },
   ];
 

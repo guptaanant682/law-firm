@@ -4,7 +4,6 @@ import About from "@/components/sections/About";
 import PracticeAreas from "@/components/sections/PracticeAreas";
 import Experience from "@/components/sections/Experience";
 import NotableWork from "@/components/sections/NotableWork";
-import Publications from "@/components/sections/Publications";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
@@ -19,7 +18,6 @@ export default function Home() {
         <PracticeAreas />
         <Experience />
         <NotableWork />
-        <Publications />
         <Contact />
       </main>
       <Footer />
