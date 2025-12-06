@@ -1,4 +1,5 @@
 import { Scale } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   return (
@@ -22,9 +23,9 @@ export default function Footer() {
         <div className="h-px w-full bg-white/10 mb-8" />
         
         <div className="flex justify-center gap-8 text-sm font-medium text-white/80">
-          <a href="#" className="hover:text-secondary transition-colors">Disclaimer</a>
-          <a href="#" className="hover:text-secondary transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-secondary transition-colors">Terms of Use</a>
+          <span className="opacity-50 cursor-not-allowed">Disclaimer</span>
+          <Link href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
+          <span className="opacity-50 cursor-not-allowed">Terms of Use</span>
         </div>
       </div>
     </footer>
